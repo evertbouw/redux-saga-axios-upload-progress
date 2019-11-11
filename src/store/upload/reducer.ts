@@ -8,7 +8,7 @@ import {
     UPLOAD_FILES_FAILED,
 } from './actionTypes';
 
-export default combineReducers({
+export const uploadReducer = combineReducers({
     status: createReducer('init', {
         [UPLOAD_FILES]: () => 'pending',
         [UPLOAD_FILES_START]: () => 'in progress',
@@ -23,7 +23,7 @@ export default combineReducers({
         [UPLOAD_FILES]: () => 0,
         [UPLOAD_FILES_PROGRESS]: (state, action) => action.payload.progress,
     }),
-    files: createReducer([], {
-        [UPLOAD_FILES]: (state, action) => [...action.payload.files].map(file => file.name),
+    files: createReducer<string[]>([], {
+        [UPLOAD_FILES]: (state, action) => [...(action.payload.files as FileList)].map(file => file.name),
     }),
 });

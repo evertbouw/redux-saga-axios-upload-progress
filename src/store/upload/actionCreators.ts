@@ -6,7 +6,7 @@ import {
     UPLOAD_FILES_FAILED,
 } from './actionTypes';
 
-export const uploadFiles = files => ({
+export const uploadFiles = (files: FileList) => ({
     type: UPLOAD_FILES,
     payload: {
         files,
@@ -17,14 +17,11 @@ export const uploadFilesStart = () => ({
     type: UPLOAD_FILES_START,
 });
 
-export const uploadFilesSuccess = result => ({
+export const uploadFilesSuccess = () => ({
     type: UPLOAD_FILES_SUCCESS,
-    payload: {
-        result,
-    },
 });
 
-export const uploadFilesFailed = error => ({
+export const uploadFilesFailed = (error: Error) => ({
     type: UPLOAD_FILES_FAILED,
     payload: {
         error,
@@ -32,7 +29,7 @@ export const uploadFilesFailed = error => ({
     error: true,
 });
 
-export const uploadFilesProgress = progress => ({
+export const uploadFilesProgress = (progress: number) => ({
     type: UPLOAD_FILES_PROGRESS,
     payload: {
         progress,
